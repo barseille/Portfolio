@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "portfolio"
+    "rest_framework",
+    "portfolio",
+    "projects",
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -55,7 +58,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR.joinpath('templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -87,16 +90,14 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 8,
+        }
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        # Vérifie que le mot de passe contient une lettre.
+        'NAME': 'authentication.validators.ContainsLetterValidator',
     },
 ]
 
@@ -118,9 +119,34 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+# Répertoires où Django doit rechercher des fichiers statiques
+STATICFILES_DIRS = [BASE_DIR.joinpath('static/')]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = 'portfolio.User'
+
+# Utilisation de bootstrap4 dans les formulaires.
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# URL à utiliser pour la vue de connexion
+LOGIN_URL = 'login'
+
+# URL à laquelle rediriger après une connexion réussie
+LOGIN_REDIRECT_URL = 'home'
+
+# url de médias téléversés par les utilisateurs
+MEDIA_URL = "/media/"
+
+# chemin d'accès au répertoire de stockage pour les fichiers médias.
+MEDIA_ROOT = BASE_DIR.joinpath("media/")
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],
+}
