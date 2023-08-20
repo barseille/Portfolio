@@ -8,12 +8,14 @@
         {% for project in projects %}
             <div class="col-md-4">
                 <div class="card mb-4">
-                    <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                    <img src="{{ project.image }}" class="card-img-top" alt="{{ project.title }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ project.title }}</h5>
                         <p class="card-text">{{ project.description|truncatewords:20 }}</p>
-                        <a href="{{ project.live_link }}" class="btn btn-primary" target="_blank">Voir en ligne</a>
-                        <a href="{{ project.code_link }}" class="btn btn-secondary" target="_blank">Code source</a>
+                        <p><strong>Technologies :</strong> {{ project.technologies }}</p>
+                        <p><strong>Compétences techniques :</strong> {{ project.technical_skills|truncatewords:10 }}</p>
+                        <p><strong>Soft skills :</strong> {{ project.soft_skills|truncatewords:10 }}</p>
+                        <a href="{{ project.github_link }}" class="btn btn-primary" target="_blank">Voir le code sur GitHub</a>
                     </div>
                 </div>
             </div>

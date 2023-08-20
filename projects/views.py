@@ -3,6 +3,8 @@ from rest_framework.permissions import IsAdminUser, AllowAny
 from django.shortcuts import render
 from .models import Project
 from .serializers import ProjectSerializer
+from django.shortcuts import get_object_or_404
+from portfolio.models import User
 
 class ProjectViewSet(ModelViewSet):
     queryset = Project.objects.all()
@@ -18,4 +20,13 @@ class ProjectViewSet(ModelViewSet):
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         serializer = ProjectSerializer(queryset, many=True)
-        return render(request, 'projects/project_list.html', {'projects': serializer.data})
+        user = User.objects.get(username='barseille') 
+        context = {'projects': serializer.data, 'user': user}
+        return render(request, 'base.html', context)
+    
+    def retrieve(self, request, pk=None):
+        project = get_object_or_404(Project, pk=pk)
+        serializer = ProjectSerializer(project)
+        return render(request, 'projects/project_detail.html', {'project': serializer.data})
+    
+

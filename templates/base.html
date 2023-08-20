@@ -1,9 +1,12 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Mon Portfolio{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
@@ -18,17 +21,52 @@
                     <a class="nav-link" href="#">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Projets</a>
+                    <a class="nav-link" href="#projets">Projets</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="#contact">Contact</a>
                 </li>
             </ul>
         </div>
     </nav>
 
     <main class="container">
+        <!-- Accueil -->
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <img src="{{ user.image.url }}" alt="photo de profil" class="img-fluid">
+            </div>
+            <div class="col-md-8">
+                <h1>Bonjour, je suis {{ user.username }}</h1>
+                <p>Développeur d'application Python junior</p>
+            </div>
+        </div>
+
+        <!-- Projets -->
+        <section id="projets" class="mt-5">
+            <h2>Projets</h2>
+            {% for project in projects %}
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <img src="{{ project.image }}" alt="{{ project.title }}" class="img-fluid">
+                    </div>
+                    <div class="col-md-8">
+                        <h3>{{ project.title }}</h3>
+                        <p>{{ project.description }}</p>
+                        <a href="{{ project.github_link }}" class="btn btn-primary">Voir le projet</a>
+                        <a href="{% url 'project_detail' project.id %}" class="btn btn-secondary">Détails du projet</a> 
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+
         {% block content %}{% endblock %}
+
+        <!-- Contact -->
+        <section id="contact" class="mt-5">
+            <h2>Contact</h2>
+            <!-- Formulaire de contact ici -->
+        </section>
     </main>
 
     <footer class="text-center mt-5">
@@ -40,3 +78,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
+

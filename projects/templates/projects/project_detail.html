@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        {% comment %} <div class="col-md-4">
+            <img src="{{ project.image }}" class="img-fluid" alt="{{ project.title }}">
+        </div> {% endcomment %}
+        <div class="col-md-8">
+            <h1>{{ project.title }}</h1>
+            <p><strong>Description :</strong> {{ project.description }}</p>
+            <p><strong>Technologies utilisées :</strong> {{ project.technologies }}</p>
+            <p><strong>Compétences techniques acquises :</strong> {{ project.technical_skills }}</p>
+            <p><strong>Soft skills acquis :</strong> {{ project.soft_skills }}</p>
+            <a href="{{ project.github_link }}" class="btn btn-primary" target="_blank">Voir le code sur GitHub</a>
+        </div>
+    </div>
+{% endblock %}
