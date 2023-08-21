@@ -18,7 +18,7 @@
 
 ## Développement d'une Application Web avec le Framework Django pour LITReview
 **Description :** Développement d'une application web pour la startup LITReview, permettant à une communauté d'utilisateurs de consulter ou de solliciter des critiques de livres à la demande.  
-[En savoir plus](lhttps://github.com/barseille/LITReview.git)
+[En savoir plus](https://github.com/barseille/LITReview.git)
 
 ## Optimisation des Stratégies d'Investissement avec AlgoInvest&Trade
 **Description :** Développement d'algorithmes pour la société financière AlgoInvest&Trade afin de maximiser les bénéfices des clients après deux ans d'investissement.  
@@ -32,7 +32,7 @@
 **Description :** LearnHome, une association qui met en relation des enfants en difficulté scolaire avec des tuteurs bénévoles.  
 [En savoir plus](https://github.com/barseille/learn_home_ponn_barseille.git)
 
-## Voir le Site 
+# Voir le Site 
 
 ### Créer un environnement virtuel : 
 
