@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from portfolio.models import User
 
 class ProjectViewSet(ModelViewSet):
+    
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
@@ -20,7 +21,10 @@ class ProjectViewSet(ModelViewSet):
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         serializer = ProjectSerializer(queryset, many=True)
-        user = User.objects.get(username='barseille') 
+        try:
+            user = User.objects.get(username='Barseille')
+        except User.DoesNotExist:
+            user = None 
         context = {'projects': serializer.data, 'user': user}
         return render(request, 'base.html', context)
     

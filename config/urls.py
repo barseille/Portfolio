@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', ProjectViewSet.as_view({'get': 'list'}), name='project_list'),
+    path('', ProjectViewSet.as_view({'get': 'list'}), name='home'),
     path('projects/<int:pk>/', ProjectViewSet.as_view({'get': 'retrieve'}), name='project_detail'), # Ligne ajoutée
 ]
 
