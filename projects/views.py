@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from portfolio.models import User
 from datetime import datetime
 
+
 class ProjectViewSet(ModelViewSet):
     """
     ViewSet pour la gestion des projets.
@@ -48,4 +49,3 @@ class ProjectViewSet(ModelViewSet):
         serializer = ProjectSerializer(project)
         return render(request, 'projects/project_detail.html', {'project': serializer.data})
     
-
